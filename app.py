@@ -39,7 +39,11 @@ img_width = 180
   crop_to_aspect_ratio=False)
 
 class_names = train_ds.class_names
+# loadedmodel=tf.keras.models.load_model('whole_model')
 
+TF_MODEL_FILE_PATH = 'model2.tflite' # The default path to the saved TensorFlow Lite model
+interpreter = tf.lite.Interpreter(model_path=TF_MODEL_FILE_PATH)
+classify_lite = interpreter.get_signature_runner('serving_default')
 
 
 
@@ -47,13 +51,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'werwefwefwef'
 app.config['UPLOAD_FOLDER'] = 'static/files'
 
-loadedmodel=tf.keras.models.load_model('whole_model')
-print(loadedmodel.summary())
-if hasattr(loadedmodel, 'class_names'):
-    class_names = loadedmodel.class_names
-    print("Class Names:", class_names)
-else:
-    print("Class names not found. Check how the model was trained.")
+
 
 
 class UploadFileForm(FlaskForm):
@@ -94,14 +92,13 @@ def home():
         img_array = tf.keras.utils.img_to_array(img)
         img_array = tf.expand_dims(img_array, 0)  # Create a batch
 
-        predictions = loadedmodel.predict(img_array)
-        score = tf.nn.softmax(predictions[0])
+        predictions_lite = classify_lite(input_2=img_array)['dense_1']
+        score_lite = tf.nn.softmax(predictions_lite)
 
-        prediction_message= "This image most likely belongs to {} with a {:.2f} percent confidence.".format(class_names[np.argmax(score)], 100 * np.max(score))
-
+        prediction_message= "This image most likely belongs to {} with a {:.2f} percent confidence.".format(class_names[np.argmax(score_lite)], 100 * np.max(score_lite))
         print(
             "This image most likely belongs to {} with a {:.2f} percent confidence."
-            .format(class_names[np.argmax(score)], 100 * np.max(score))
+            .format(class_names[np.argmax(score_lite)], 100 * np.max(score_lite))
         )
 
 
