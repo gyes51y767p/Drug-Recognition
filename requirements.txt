@@ -4,4 +4,3 @@ Flask-WTF
 tensorflow
 gunicorn
 Pillow
-tensorflow-gpu==2.8.0
