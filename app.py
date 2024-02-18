@@ -1,5 +1,5 @@
 import pickle
-from flask import Flask, request, jsonify, app, render_template ,url_for,flash,redirect
+from flask import Flask, request, jsonify, render_template ,url_for,flash,redirect
 from flask_wtf import FlaskForm
 from flask_wtf.file import  FileRequired, FileAllowed
 
@@ -68,22 +68,29 @@ class UploadFileForm(FlaskForm):
 @app.route('/',methods=['GET','POST'])
 @app.route('/home',methods=['GET','POST'])
 def home():
+    return render_template('home.html')
+
+
+@app.route('/predict',methods=['POST','GET'])
+def predict():
     form = UploadFileForm()
     submission_successful = False
-    prediction_message=""
+    prediction_message = ""
     prediction = "this is the prediction"
-    path= os.path.abspath('')
+    path = os.path.abspath('')
 
     print(path)
     if form.validate_on_submit():
         file = form.file.data
 
-
-        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename)))
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'],
+                               secure_filename(file.filename)))
         success_message = "File has been uploaded successfully"
         submission_successful = True
-        filepath=os.path.join(os.path.abspath(""),app.config['UPLOAD_FOLDER'], file.filename)
+        filepath = os.path.join(os.path.abspath(""), app.config['UPLOAD_FOLDER'], file.filename)
+        print("------________----")
         print(filepath)
+        print("-----_________-----")
 
 
         img = tf.keras.utils.load_img(
@@ -95,20 +102,12 @@ def home():
         predictions_lite = classify_lite(input_2=img_array)['dense_1']
         score_lite = tf.nn.softmax(predictions_lite)
 
-        prediction_message= "This image most likely belongs to {} with a {:.2f} percent confidence.".format(class_names[np.argmax(score_lite)], 100 * np.max(score_lite))
-        print(
-            "This image most likely belongs to {} with a {:.2f} percent confidence."
-            .format(class_names[np.argmax(score_lite)], 100 * np.max(score_lite))
-        )
+        prediction_message = "This image most likely belongs to {} with a {:.2f} percent confidence.".format(
+            class_names[np.argmax(score_lite)], 100 * np.max(score_lite))
+        print(f"this is the precdioctioin result : {prediction_message}")
 
-
-
-    return render_template('home.html', form=form, submission_successful=submission_successful, prediction_message=prediction_message)
-
-
-@app.route('/predict_api',methods=['POST'])
-def predict_api():
-    pass
+    return render_template('predict.html', form=form, submission_successful=submission_successful,
+                           prediction_message=prediction_message)
 
 
 if __name__ == '__main__':
