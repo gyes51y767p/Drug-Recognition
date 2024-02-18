@@ -7,10 +7,10 @@ from wtforms import FileField ,SubmitField
 from werkzeug.utils import secure_filename
 import os
 
-
-# import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
+
+# import matplotlib.pyplot as plt
 # from tensorflow import keras
 # from tensorflow.keras import layers ,regularizers
 # from tensorflow.keras.callbacks import EarlyStopping
@@ -112,5 +112,4 @@ def predict_api():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    print("hello")
+    app.run(debug=False)
