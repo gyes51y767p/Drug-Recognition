@@ -86,7 +86,7 @@ def predict():
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'],secure_filename(file.filename)))
 
         success_message = "File has been uploaded successfully"
-        print(f"the file save to : {os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'],secure_filename(file.filename))}", flush=True)
+        print(f"the file save to : {os.path.join(os.path.abspath(''), app.config['UPLOAD_FOLDER'],secure_filename(file.filename))}", flush=True)
         submission_successful = True
         filepath = os.path.join(os.path.abspath(""), app.config['UPLOAD_FOLDER'], file.filename)
         print(f"now the filepath is : {filepath}", flush=True)
