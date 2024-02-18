@@ -88,7 +88,7 @@ def predict():
         file.save(os.path.join(target_directory, secure_filename(file.filename)))
 
         # file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'],secure_filename(file.filename)))
-        # print(f"the file save to : {os.path.join(os.path.abspath(''), app.config['UPLOAD_FOLDER'],secure_filename(file.filename))}", flush=True)
+        print(f"the file save to : {os.path.join(target_directory, secure_filename(file.filename))}", flush=True)
         submission_successful = True
 
 
