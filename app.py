@@ -115,6 +115,8 @@ def predict():
     return render_template('predict.html', form=form, submission_successful=submission_successful,
                            prediction_message=prediction_message)
 
-
+#srv-cn8kjn7109ks739pe7n0
+#srv-cn8kjn7109ks739pe7n0
+#          rnd_4znDVOg1TI2zckYM4WBuLtg8T6Yo
 if __name__ == '__main__':
     app.run(debug=False)

@@ -1,5 +1,5 @@
 FROM python:3.11
-LABEL authors="liangshenghao"
+#LABEL authors="liangshenghao"
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
