@@ -2,3 +2,4 @@ Werkzeug
 Flask
 Flask-WTF
 tensorflow
+gunicorn
