@@ -39,6 +39,7 @@ img_width = 180
   crop_to_aspect_ratio=False)
 
 class_names = train_ds.class_names
+print(f"class_names is {class_names}")
 # loadedmodel=tf.keras.models.load_model('whole_model')
 
 TF_MODEL_FILE_PATH = 'model2.tflite' # The default path to the saved TensorFlow Lite model
