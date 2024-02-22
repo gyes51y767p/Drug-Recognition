@@ -20,6 +20,8 @@
   {% if submission_successful %}
     <p>File uploaded successfully</p>
     <p>{{prediction_message}}</p>
+    <img src="{{ image_location }}" alt="Predicted Image">
   {% endif %}
+
   </body>
 </html>

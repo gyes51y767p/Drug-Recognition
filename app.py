@@ -79,7 +79,8 @@ def predict():
     prediction_message = ""
     prediction = "this is the prediction"
     path = os.path.abspath('')
-
+    filepath=None
+    image_location=None
 
     if form.validate_on_submit():
         file = form.file.data
@@ -109,12 +110,14 @@ def predict():
         predictions_lite = classify_lite(input_2=img_array)['dense_1']
         score_lite = tf.nn.softmax(predictions_lite)
 
+        image_location = url_for('static', filename='files/' + file.filename)
+
         prediction_message = "This image most likely belongs to {} with a {:.2f} percent confidence.".format(
             class_names[np.argmax(score_lite)], 100 * np.max(score_lite))
         print(f"this is the precdioctioin result : {prediction_message}")
 
     return render_template('predict.html', form=form, submission_successful=submission_successful,
-                           prediction_message=prediction_message)
+                           prediction_message=prediction_message,image_location=image_location)
 
 #srv-cn8kjn7109ks739pe7n0
 #srv-cn8s92f109ks739qsn8g
