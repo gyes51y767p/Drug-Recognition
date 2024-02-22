@@ -21,6 +21,9 @@ There is a limited dataset available online for training the model,
 but I have created the template model for the project. If additional 
 datasets become available in the future, I will update the model accordingly.
 
+# Go to the App <a name="predictApp"></a>
+[Drug recognition app](https://drug-dockerfile.onrender.com/predict)
+
 # For Developers<a name="developers"></a>
 
 ## Use the model
