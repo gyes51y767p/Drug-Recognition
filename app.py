@@ -63,7 +63,7 @@ class UploadFileForm(FlaskForm):
         # FileAllowed(['jpg', 'jpeg', 'pdf'])],
         # render_kw={"placeholder": "and how about here ile"})
 
-    submit = SubmitField('lets see')
+    submit = SubmitField('lets predict')
 
 
 @app.route('/',methods=['GET','POST'])
