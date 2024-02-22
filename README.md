@@ -22,7 +22,7 @@ but I have created the template model for the project. If additional
 datasets become available in the future, I will update the model accordingly.
 
 # Go to the App <a name="predictApp"></a>
-[Drug recognition app](https://drug-dockerfile.onrender.com/predict)
+[Drug recognition app](https://drug-dockerfile.onrender.com/)
 
 # For Developers<a name="developers"></a>
 
